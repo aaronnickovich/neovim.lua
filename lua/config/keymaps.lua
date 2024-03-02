@@ -51,6 +51,7 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 
 -- vim.keymap.set('n', 'Q', '<nop>')
 
+-- reformat whole file buffer with LSP suggestion
 vim.keymap.set("n", "<leader>f", function()
   vim.lsp.buf.format()
 end)
@@ -60,9 +61,10 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
--- Search and Replace in file
+-- Search and Replace word in file
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- exit file buffer
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "[P]roject [V]iew" })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
@@ -71,7 +73,7 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
 vim.defer_fn(function()
   require("nvim-treesitter.configs").setup({
-    -- Add languages to be installed here that you want installed for treesitter
+    -- Add languages to be installed here that you want installed for treesitter, can optionally install via :TSInstall <lang>
     ensure_installed = {
       "bash",
       "c",
